@@ -1,3 +1,0 @@
-﻿<Project>
-  <Import Project="..\build\CRUD in Modal.props" />
-</Project>

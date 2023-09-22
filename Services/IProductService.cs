@@ -1,4 +1,5 @@
 ﻿using ModalCRUD.Models;
+using ModalCRUD.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,6 +9,6 @@ namespace ModalCRUD.Services
 {
     public interface IProductService
     {
-
+        bool CreateOrEditProducts(CreateOrEditProductViewModel createorEdite);
     }
 }
