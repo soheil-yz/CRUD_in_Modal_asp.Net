@@ -10,5 +10,6 @@ namespace ModalCRUD.Services
     public interface IProductService
     {
         bool CreateOrEditProducts(CreateOrEditProductViewModel createorEdite);
+        CreateOrEditProductViewModel FillCreateOrEditProductViewModal(int productId);
     }
 }

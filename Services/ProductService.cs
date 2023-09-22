@@ -20,18 +20,18 @@ namespace ModalCRUD.Services
         }
         #endregion
 
-        public bool CreateOrEditProducts(CreateOrEditProductViewModel createorEdite)
+        public bool CreateOrEditProducts(CreateOrEditProductViewModel createOrEdite)
         {
-            if (createorEdite.Id == 0)
+            if (createOrEdite.Id == 0)
             {
                 var add = new Product()
                 {
-                    Barcode = createorEdite.Barcode,
-                    Description = createorEdite.Description,
+                    Barcode = createOrEdite.Barcode,
+                    Description = createOrEdite.Description,
                     IsDelete = false,
-                    Name = createorEdite.Name,
-                    Price = createorEdite.Price,
-                    Type = createorEdite.Type,
+                    Name = createOrEdite.Name,
+                    Price = createOrEdite.Price,
+                    Type = createOrEdite.Type,
 
                 };
                 _context.Add(add);
@@ -39,10 +39,45 @@ namespace ModalCRUD.Services
 
                 return true;
             }
+            var product = _context.Products.FirstOrDefault(s => s.Id == createOrEdite.Id && !s.IsDelete);
+            if (product == null)
+            {
+                return false;
+            }
+            product.Name = createOrEdite.Name;
+            product.Price = createOrEdite.Price;
+            product.Type = createOrEdite.Type;
+            product.Description = createOrEdite.Description;
+            product.Barcode = createOrEdite.Barcode;
+
+            _context.Update(product);
+            _context.SaveChanges();
+
+            return true;
         }
 
+        public CreateOrEditProductViewModel FillCreateOrEditProductViewModal(int productId)
+        {
+            if (productId == 0)
+            {
+                return null;
 
+            }
+            var product = _context.Products.FirstOrDefault(p => p.Id == productId && !p.IsDelete);
+            if (product == null)
+            {
+                return null;
+            }
+            return new CreateOrEditProductViewModel()
+            {
+                Name = product.Name,
+                Price = product.Price,
+                Type = product.Type,
+                Description = product.Description,
+                Barcode = product.Barcode,
+                Id = product.Id,
 
-
+            };  
+        }
     }
 }
