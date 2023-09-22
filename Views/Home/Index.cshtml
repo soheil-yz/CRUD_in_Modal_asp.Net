@@ -2,7 +2,51 @@
     ViewData["Title"] = "Home Page";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<div class="row">
+    <div class="col-md-12 table-responsive" id="ProductDiv">
+        <div class="d-flex justify-content-between align-items-center mb-3 mt-3">
+            <h4>List of Products</h4>
+            <button type="button" class="btn btn-success" onclick="LoadProductModalBody(0)">Add Product</button>
+        </div>
+
+        <table class="table text-center table-bordered table-hover">
+            <caption>List of Products</caption>
+            <thead class="thead-dark">
+            <tr>
+                <th scope="col">Id</th>
+                <th scope="col">Name</th>
+                <th scope="col">Price</th>
+                <th scope="col">Type</th>
+                <th scope="col">Barcode</th>
+                <th scope="col">Commands</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>1</td>
+                <td>Asp.Net Core</td>
+                <td>$19</td>
+                <td>Digital</td>
+                <td>465155</td>
+                <td>
+                    <button type="button" class="btn btn-warning btn-sm">Edit</button>
+                    <button type="button" class="btn btn-danger btn-sm">Delete</button>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+
+        <div class="alert alert-info w-100 text-center d-none" role="alert">
+            No Product Founded
+        </div>
+    </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="ProductModal" tabindex="-1" aria-labelledby="ProductModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content" id="ProductModalContent">
+            
+        </div>
+    </div>
 </div>
